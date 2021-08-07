@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRM</title>
+</head>
+<body>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Gray Scale by Free Css Templates</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="../static/default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<h1><a href="#">Conference Room Manager </a></h1>
+<!--		<h2><a href="http://freecsstemplates.org/">by Free Css Templates </a></h2>-->
+	</div>
+	<div id="content">
+		<div id="colOne">
+			<div id="menu">
+				<ul>
+					<li><a href="http://127.0.0.1:8000/room" accesskey="1" title="">Show all rooms</a></li>
+					<li><a href="http://127.0.0.1:8000/room/add_room" accesskey="2" title="">add new room</a></li>
+					<li><a href="#" accesskey="5" title="">Contact Us</a></li>
+				</ul>
+			</div>
+			<div class="latest-post">
+				<h2>{{message}}</h2>
+			</div>
+
+
+			{% for room in rooms %}
+
+			<div class="post">
+				<h3>{{room.name}} - Room</h3>
+				<p>Romm size : {{room.size}}</p>
+				{% if room.has_projector%}
+				<p>Projector avelible </p>
+				{%endif%}
+				<p class="file"><small><a href="http://127.0.0.1:8000/room/reserve/{{room.pk}}}">RESERVE</a>   <a href="http://127.0.0.1:8000/room/modifi/{{room.pk}}}">MODIFI</a> <a href="http://127.0.0.1:8000/room/delete/{{room.pk}}">DELETE</a></small></p>
+			</div>
+			{%endfor%}
+		</div>
+		<div id="colTwo">
+			<h3>All rooms</h3>
+
+			    <ol>
+                      {% for room in rooms %}
+				        <li><a href="#">{{room.name}}</a></li>
+                      {% endfor %}
+
+			    </ol>
+			<p>&nbsp;</p>
+		</div>
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<div id="footer">
+		<p>Copyright &copy; 2006 Sweet Garden. Designed by <a href="http://freecsstemplates.org"><strong>Free CSS Templates</strong></a></p>
+	</div>
+</div>
+<div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
+</div>
+<div align=center>Backand by Szymon Żak </a></div></body>
+</html>
+
+</body>
+</html>
