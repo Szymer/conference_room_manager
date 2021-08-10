@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from CRM.views import addRoom, showAllRooms, deleteRoom
+from CRM.views import addRoom, showAllRooms, deleteRoom, modRoom, reservRoom, detailedRoom
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('room/', showAllRooms.as_view()),
     path('room/add_room', addRoom.as_view()),
     path('room/delete/<int:room_id>', deleteRoom.as_view()),
-    path('room/modifi/<int:room_id>', deleteRoom.as_view()),
+    path('room/modifi/<int:room_id>', modRoom.as_view()),
+    path('room/reserve/<int:room_id>', reservRoom.as_view()),
+    path('room/<int:showed_room_id>', detailedRoom.as_view()),
     ]

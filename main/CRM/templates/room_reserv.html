@@ -17,9 +17,12 @@ Released for free under a Creative Commons Attribution 2.5 License
 <title>Gray Scale by Free Css Templates</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-{% load static %}
+	{% load static %}
 <link href="{% static "default.css" %}" rel="stylesheet" type="text/css" />
+<!--<link href="../static/default.css" rel="stylesheet" type="text/css" />-->
+
 </head>
+
 <body>
 <div id="wrapper">
 	<div id="header">
@@ -30,41 +33,43 @@ Released for free under a Creative Commons Attribution 2.5 License
 		<div id="colOne">
 			<div id="menu">
 				<ul>
-					<li><a href="http://127.0.0.1:8000/room" accesskey="1" title="">Show all rooms</a></li>
-					<li><a href="http://127.0.0.1:8000/room/add_room" accesskey="2" title="">add new room</a></li>
+					<li><a href="http://127.0.0.1:8000/room/" accesskey="1" title="">Show all rooms</a></li>
+					<li><a href="#" accesskey="2" title="">add new room</a></li>
 					<li><a href="#" accesskey="5" title="">Contact Us</a></li>
 				</ul>
 			</div>
 			<div class="latest-post">
-				<h2>{{message}}</h2>
+
+                    <h2>Reserv Room </h2>
+				<h3>{{ message }}</h3>
+                <p><strong>{{room.name}}</strong>
+                <form action="#" method="POST">
+                    {% csrf_token %}
+
+                      <p><strong>Reservation date: </strong>
+                        <br><input type="date" name="reservation_date" value={{date.now}}>
+                    </label>
+                     <label>
+                         <p><strong>  </strong>
+                        <input type="text", name="comment" >
+                     </label>
+                        <p><br><input type="submit", value="save">
+                </form>
 			</div>
-
-
-			{% for room in rooms %}
-
-			<div class="post">
-				<h3><a href="http://127.0.0.1:8000/room/{{room.pk}}">{{room.name}}- Room</a></h3>
-				<p>Romm size : {{room.size}}</p>
-				{% if room.has_projector%}
-				<p>Projector avelible </p>
-				{%endif%}
-				{% if room.reserved %}
-				<p style="color:#FF0000" >  NOT avelible  today </p>
-				{%endif%}
-				<p class="file"><small><a href="http://127.0.0.1:8000/room/reserve/{{room.pk}}">RESERVE</a>   <a href="http://127.0.0.1:8000/room/modifi/{{room.pk}}">MODIFI</a> <a href="http://127.0.0.1:8000/room/delete/{{room.pk}}">DELETE</a></small></p>
-			</div>
-			{%endfor%}
+<!--			</div>-->
 		</div>
 		<div id="colTwo">
-			<h3>All rooms</h3>
+			<h3>All reservations</h3>
 
-			    <ol>
-                      {% for room in rooms %}
-				        <li><a href=""http://127.0.0.1:8000/room/{{room.pk}}"">{{room.name}}</a></li>
+			    <ul>
+                      {% for reservation_date in reservations %}
+				        <li>{{reservation_date.reservation_date}} <br>
+							<p class="file"><small>Comment : {{reservation_date.comment}}</small></p>  </li>
                       {% endfor %}
 
-			    </ol>
-			<p>&nbsp;</p>
+			    </ul>
+
+
 		</div>
 		<div style="clear: both;">&nbsp;</div>
 	</div>
@@ -76,6 +81,9 @@ Released for free under a Creative Commons Attribution 2.5 License
 </div>
 <div align=center>Backand by Szymon Żak </a></div></body>
 </html>
+</title>
+</head>
+<body>
 
 </body>
 </html>

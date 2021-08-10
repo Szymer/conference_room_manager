@@ -17,9 +17,12 @@ Released for free under a Creative Commons Attribution 2.5 License
 <title>Gray Scale by Free Css Templates</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-{% load static %}
+	{% load static %}
 <link href="{% static "default.css" %}" rel="stylesheet" type="text/css" />
+<!--<link href="../static/default.css" rel="stylesheet" type="text/css" />-->
+
 </head>
+
 <body>
 <div id="wrapper">
 	<div id="header">
@@ -30,40 +33,44 @@ Released for free under a Creative Commons Attribution 2.5 License
 		<div id="colOne">
 			<div id="menu">
 				<ul>
-					<li><a href="http://127.0.0.1:8000/room" accesskey="1" title="">Show all rooms</a></li>
-					<li><a href="http://127.0.0.1:8000/room/add_room" accesskey="2" title="">add new room</a></li>
+					<li><a href="http://127.0.0.1:8000/room/" accesskey="1" title="">Show all rooms</a></li>
+					<li><a href="#" accesskey="2" title="">add new room</a></li>
 					<li><a href="#" accesskey="5" title="">Contact Us</a></li>
 				</ul>
 			</div>
 			<div class="latest-post">
-				<h2>{{message}}</h2>
+
+                    <h2>ADD new Room </h2>
+				<h3>{{ message }}</h3>
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <label>
+                       <p><strong>Room Name: </strong>
+						   <br><input type="text" name="room_name" value = {{room.name}}>
+
+                    <label>
+                      <p><strong>Room size: </strong>
+                        <br><input type="text" name="room_size" value={{room.size}}>
+                    </label>
+                     <label>
+                         <p><strong> Projector </strong>
+                        <input type="checkbox", name="projector"{% if room.has_projector %}checked= true {% endif%} >
+                     </label>
+                        <p><br><input type="submit", value="save">
+                </form>
 			</div>
-
-
-			{% for room in rooms %}
-
-			<div class="post">
-				<h3><a href="http://127.0.0.1:8000/room/{{room.pk}}">{{room.name}}- Room</a></h3>
-				<p>Romm size : {{room.size}}</p>
-				{% if room.has_projector%}
-				<p>Projector avelible </p>
-				{%endif%}
-				{% if room.reserved %}
-				<p style="color:#FF0000" >  NOT avelible  today </p>
-				{%endif%}
-				<p class="file"><small><a href="http://127.0.0.1:8000/room/reserve/{{room.pk}}">RESERVE</a>   <a href="http://127.0.0.1:8000/room/modifi/{{room.pk}}">MODIFI</a> <a href="http://127.0.0.1:8000/room/delete/{{room.pk}}">DELETE</a></small></p>
-			</div>
-			{%endfor%}
+<!--			</div>-->
 		</div>
 		<div id="colTwo">
 			<h3>All rooms</h3>
 
 			    <ol>
                       {% for room in rooms %}
-				        <li><a href=""http://127.0.0.1:8000/room/{{room.pk}}"">{{room.name}}</a></li>
+				        <li><a href="#">{{room.name}}</a></li>
                       {% endfor %}
 
 			    </ol>
+
 			<p>&nbsp;</p>
 		</div>
 		<div style="clear: both;">&nbsp;</div>
@@ -76,6 +83,9 @@ Released for free under a Creative Commons Attribution 2.5 License
 </div>
 <div align=center>Backand by Szymon Żak </a></div></body>
 </html>
+</title>
+</head>
+<body>
 
 </body>
 </html>
